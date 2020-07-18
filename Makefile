@@ -9,7 +9,7 @@ help:
 	@echo "  api: compile protobuf files for go"
 
 api:
-	git pull --recurse-submodules
+	git submodule update --recursive --remote
 	find "$(PROTO_TARGET)" -type f -delete
 	find ./api/service_proto/common/*.proto -maxdepth 1 -type f -exec protoc {} --go_out=plugins=grpc:$(PROTO_BUILD_DIR) \;
 
